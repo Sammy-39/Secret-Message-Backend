@@ -53,6 +53,11 @@ router.post('/create-message', async (req, res) => {
             password: hash,
             message: req.body.message
         }
+        const check = await db.collection('secretMessage').findOne({key:data.key})
+        if(check){
+            res.status(422).json("Secret key in use")
+            return
+        }
         await db.collection('secretMessage').insertOne(data);
         const result = await db.collection('secretMessage').findOne({key: data.key});
         const usrMailUrl = `${req.body.targetURL}/${result._id}`;
