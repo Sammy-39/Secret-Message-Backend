@@ -73,7 +73,7 @@ router.post('/create-message', async (req, res) => {
         res.status(200).json({message: "secret message is send. Don't forget yout secret key and password", result})
         client.close()
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
         res.sendStatus(500);
     }
 })
@@ -96,6 +96,7 @@ router.get('/message-by-id/:id/:password', async (req, res) => {
         }
         client.close()
     } catch (error) {
+        console.log(error)
         res.sendStatus(500);
     }
 })
@@ -117,6 +118,7 @@ router.get('/message-by-key/:key/:password', async (req, res) => {
         }
         client.close()
     } catch (error) {
+        console.log(error)
         res.sendStatus(500);
     } 
 })
@@ -141,6 +143,7 @@ router.patch('/edit-message', async (req, res) => {
         }
         client.close()
     } catch (error) {
+        console.log(error)
         res.sendStatus(500);
     } 
 })
@@ -163,6 +166,7 @@ router.delete('/delete-message', async (req, res) => {
         }
         client.close()
     } catch (error) {
+        console.log(error)
         res.sendStatus(500);
     } 
 })
